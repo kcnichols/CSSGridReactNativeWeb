@@ -1,25 +1,28 @@
 import React, {Component} from 'react';
 import { colorGrid } from 's2s-themes';
+import { View, Text, StyleSheet } from 'react-native';
 
-export default class Circle extends Component {
+export default class Button extends Component {
     render () {
         return(
-          <div
+          <View
             style = {{
               alignItems : 'center',
               backgroundColor : colorGrid.gray0,
-              border : '2px solid' + colorGrid.gray4,
+              borderColor : colorGrid.gray4,
+              borderStyle : 'solid',
+              borderWidth : '2px',
               borderRadius : '50%',
               cursor : 'pointer',
               display : 'flex',
               height : '50px',
               justifyContent : 'center',
+              padding : '48px',
               width : '50px',
-              padding : '16px',
             }}
           >
             {this.props.children}
-          </div>
+          </View>
       )
     }
 }

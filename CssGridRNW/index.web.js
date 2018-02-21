@@ -281,7 +281,6 @@ export default class App extends Component {
   }
 
   render () {
-
       return (
         <View className = "APPCONTAINER" style = {styles.app} >
           <Text style={styles.header}>React Native Web + CSS Grid</Text>

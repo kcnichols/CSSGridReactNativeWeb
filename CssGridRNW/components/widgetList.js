@@ -4,8 +4,17 @@ import React, {Component} from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import widgets from './widgets/index';
 import PropTypes from 'prop-types';
-import Circle from './circle';
+import Button from './button';
 import { colorGrid } from 's2s-themes';
+import * as SVG from 's2s-native-svg-icons';
+
+
+const widgetIcons = {
+  calendar : SVG['CalendarIconSVG'],
+  teamlist : SVG['GroupIconSVG'],
+  todo : SVG['CheckboxIconSVG'],
+  statistics : SVG['EditIconSVG']
+}
 
 const styles = StyleSheet.create({
   widgetListContainer : {
@@ -33,7 +42,7 @@ const styles = StyleSheet.create({
   buttonWrapper : {
     alignItems : 'center',
     display : 'flex',
-    flex : 1, // 1 50%',
+    flex : 1,
     flexBasis : '50%',
     justifyContent : 'center',
     paddingBottom : '16px'
@@ -69,7 +78,7 @@ export default class WidgetList extends Component {
       <Text style = {styles.header} > Widget List </Text>
       <View style = {styles.listArea} >
         {widgetArray.map((widget, index)=>{
-          const WidgetAF = widgets[widget];
+          const WidgetSVG = widgetIcons[widget.toLowerCase()]
           return (
             <View
                 className = "widgetWrapper"
@@ -77,11 +86,13 @@ export default class WidgetList extends Component {
                 onClick={()=>{ this.props.cbWidgetClick(widget); }}
                 style = {styles.buttonWrapper}
             >
-                <Circle key = {index} >
+                <Button key = {index} >
                   <Text style = {styles.buttonLabel}>
-                    {widget}
+                    {
+                      <WidgetSVG fill = {colorGrid.gray8} />
+                    }
                   </Text>
-                </Circle>
+                </Button>
             </View>
           )
         })}
