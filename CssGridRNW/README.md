@@ -7,7 +7,6 @@ TODO
 ----
 
 - Use JSONata for Statistics component.
-- Simplify Input component.
 - Outer grid gaps causing multiple widgets to overflow out of workspace.
 - Make the IOS and Android files
 - Fix deleteWidget/editWidget functions. Method of setting state probably needs work.

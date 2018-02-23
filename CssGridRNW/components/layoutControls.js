@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { colorGrid } from 's2s-themes';
-import Input from './input.js';
 
 const styles = StyleSheet.create({
   layoutControlsContainer : {
@@ -68,11 +67,11 @@ export default class LayoutControls extends Component {
           <View style = {styles.controlsContainer} >
             <View style = {styles.inputLabelsContainer} >
               <Text style = {styles.label}>Rows :</Text>
-              <Input hasSVG = {false} cbOnChange={(value)=>{  this.props.cbRowChange(value); }} />
+              <input onChange={(e)=>{ this.props.cbRowChange(e.target.value); }} />
             </View>
             <View style = {styles.inputLabelsContainer} >
               <Text style = {styles.label}> Columns : </Text>
-              <Input hasSVG = {false} cbOnChange={(value)=>{ this.props.cbColumnChange(value); }} />
+              <input onChange={(e)=>{ this.props.cbColumnChange(e.target.value); }} />
             </View>
           </View>
         </View>)

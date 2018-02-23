@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     display : 'grid',
     gridColumnGap : '8px',
     gridRowGap : '8px',
+    padding : '8px'
   },
   modalContainer : {
     backgroundColor : 'rgba(34, 138, 230, 0.24)',
