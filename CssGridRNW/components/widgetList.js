@@ -61,13 +61,13 @@ export default class WidgetList extends Component {
 
   }
 
-  // static propTypes = {
-  //   cbWidgetClick : PropTypes.func,
-  // };
-  //
-  // static defaultProps = {
-  //   cbWidgetClick: ()=>{console.log('cbWidgetClick is not defined');},
-  // };
+  static propTypes = {
+    cbWidgetClick : PropTypes.func,
+  };
+
+  static defaultProps = {
+    cbWidgetClick: ()=>{console.log('cbWidgetClick is not defined');},
+  };
 
   render () {
 

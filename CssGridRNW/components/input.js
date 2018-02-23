@@ -391,8 +391,6 @@ const styles = StyleSheet.create({
     }
   });
 
-
-
 const svgDefaultMap ={
   'email' : 'AvatarIconSVG',
   'password': 'LockIconSVG',
@@ -428,45 +426,40 @@ class Input extends Component {
     this.showPwString = "Show";
     this.hidePwString = "Hide";
 
-    //this.prefetchStyles(this.props, this.state);
   }
 
   // get value(){
   //   return this.refs.input.value;
   // }
 
-  // static propTypes = {
-  //   cbIconClick : PropTypes.func,
-  //   cbOnChange: PropTypes.func,
-  //   cbOnEnter: PropTypes.func,
-  //   cbOnFocus: PropTypes.func,
-  //   compStyle: PropTypes.object,
-  //   errorText: PropTypes.string,
-  //   hasError: PropTypes.bool,
-  //   hasSVG: PropTypes.bool,
-  //   inputType: PropTypes.oneOf(['email', 'password', 'text']),
-  //   isDisabled: PropTypes.bool,
-  //   placeholder: PropTypes.string,
-  //   svgOverride: PropTypes.string,
-  //   value: PropTypes.string
-  // };
-  //
-  // static defaultProps = {
-  //   cbOnEnter: ()=>{/*console.log('cbOnEnter is not defined');*/},
-  //   cbOnChange: ()=>{/*console.log('cbOnChange is not defined');*/},
-  //   cbOnFocus: ()=>{/*console.log('cbOnFocus is not defined');*/},
-  //   errorText: undefined,
-  //   hasError: false,
-  //   hasSVG: true,
-  //   inputType: 'text',
-  //   isDisabled: false,
-  //   placeholder: undefined,
-  //   value: ''
-  // };
+  static propTypes = {
+    cbIconClick : PropTypes.func,
+    cbOnChange: PropTypes.func,
+    cbOnEnter: PropTypes.func,
+    cbOnFocus: PropTypes.func,
+    compStyle: PropTypes.object,
+    errorText: PropTypes.string,
+    hasError: PropTypes.bool,
+    hasSVG: PropTypes.bool,
+    inputType: PropTypes.oneOf(['email', 'password', 'text']),
+    isDisabled: PropTypes.bool,
+    placeholder: PropTypes.string,
+    svgOverride: PropTypes.string,
+    value: PropTypes.string
+  };
 
-  // static filename = 's2s-input';
-  // static displayName = 'Input'
-  // static thumbnail = 'data:image/png;base64,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';
+  static defaultProps = {
+    cbOnEnter: ()=>{/*console.log('cbOnEnter is not defined');*/},
+    cbOnChange: ()=>{/*console.log('cbOnChange is not defined');*/},
+    cbOnFocus: ()=>{/*console.log('cbOnFocus is not defined');*/},
+    errorText: undefined,
+    hasError: false,
+    hasSVG: true,
+    inputType: 'text',
+    isDisabled: false,
+    placeholder: undefined,
+    value: ''
+  };
 
   shouldComponentUpdate(nextProps, nextState) {
     //this component does not use state so it does not need to be checked in here
@@ -493,22 +486,6 @@ class Input extends Component {
     });
 
   }
-
-  // componentWillUpdate(prevProps, prevState){
-  //
-  //   if(prevState.onHover !== this.state.onHover) {
-  //     this.prefetchStyles(prevProps, prevState)
-  //   }
-  //
-  //   if(prevState.isFocus !== this.state.isFocus) {
-  //     this.prefetchStyles(prevProps, prevState)
-  //   }
-  //
-  //   if(prevState.showingError !== this.state.showingError) {
-  //     this.prefetchStyles(prevProps, prevState)
-  //   }
-  //
-  // }
 
   getDefaultStyle(styleName, props, state)  {
     //console.log('getDefaultStyle', props, state)
@@ -727,7 +704,6 @@ class Input extends Component {
             className = "inputContainer"
             style = {inputContainer}
         >
-          {dynamicSvgArea}
           <TextInput
               aria-label = 'Input'
               className = "inputField"

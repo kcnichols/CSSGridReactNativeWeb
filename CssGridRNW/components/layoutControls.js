@@ -51,15 +51,15 @@ export default class LayoutControls extends Component {
     };
   }
 
-  // static propTypes = {
-  //   cbRowChange : PropTypes.func,
-  //   cbColumnChange : PropTypes.func
-  // };
-  //
-  // static defaultProps = {
-  //   cbRowChange: ()=>{console.log('cbRowChange is not defined');},
-  //   cbColumnChange: ()=>{console.log('cbColumnChange is not defined');},
-  // };
+  static propTypes = {
+    cbRowChange : PropTypes.func,
+    cbColumnChange : PropTypes.func
+  };
+
+  static defaultProps = {
+    cbRowChange: ()=>{console.log('cbRowChange is not defined');},
+    cbColumnChange: ()=>{console.log('cbColumnChange is not defined');},
+  };
 
   render () {
       return(
@@ -68,11 +68,11 @@ export default class LayoutControls extends Component {
           <View style = {styles.controlsContainer} >
             <View style = {styles.inputLabelsContainer} >
               <Text style = {styles.label}>Rows :</Text>
-              <Input cbOnChange={(value)=>{  this.props.cbRowChange(value); }} />
+              <Input hasSVG = {false} cbOnChange={(value)=>{  this.props.cbRowChange(value); }} />
             </View>
             <View style = {styles.inputLabelsContainer} >
               <Text style = {styles.label}> Columns : </Text>
-              <Input cbOnChange={(value)=>{ this.props.cbColumnChange(value); }} />
+              <Input hasSVG = {false} cbOnChange={(value)=>{ this.props.cbColumnChange(value); }} />
             </View>
           </View>
         </View>)

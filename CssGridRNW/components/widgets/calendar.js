@@ -107,25 +107,24 @@ class Calendar extends Component {
 
       this.moment = moment();
 
-      //console.log('calendar mount', moment(this.props.metadata.selectedDate, "x").format("MMMM DD, YYYY"))
   }
 
-  // static propTypes = {
-  //   cbDayClick : PropTypes.func,
-  //   metadata: PropTypes.object,
-  // };
-  //
-  // static defaultProps = {
-  //   //cbDayClick : ()=>{ console.log('Default function for cbDayClick fired')},
-  //   "metadata":{
-  //     "title": "Not Specified"
-  //   }
-  // };
-  //
-  // static svg_icon = "CalendarIconSVG";
-  //
-  // static filename = 's2s-native-calendar';
-  // static displayName = 'Calendar';
+  static propTypes = {
+    cbDayClick : PropTypes.func,
+    metadata: PropTypes.object,
+  };
+
+  static defaultProps = {
+    //cbDayClick : ()=>{ console.log('Default function for cbDayClick fired')},
+    "metadata":{
+      "title": "Not Specified"
+    }
+  };
+
+  static svg_icon = "CalendarIconSVG";
+
+  static filename = 's2s-native-calendar';
+  static displayName = 'Calendar';
 
   shouldComponentUpdate(nextProps, nextState) {
     // No state so not checking it

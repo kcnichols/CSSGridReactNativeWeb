@@ -247,8 +247,10 @@ export default class App extends Component {
                 <input onChange={(e)=>{ this.widgetGridColumnEnd = e.target.value; }} />
               </View>
             </View>
-            <TouchableOpacity onPress = {()=>{this.deleteWidget(widget);}}  style = {styles.deleteButton} ><Text style = {styles.buttonText} >Delete</Text></TouchableOpacity>
-            <TouchableOpacity onPress = {()=>{ this.updateWidget(widget);  }} style = {styles.submitButton} ><Text style = {styles.buttonText} >Submit</Text></TouchableOpacity>
+            <View style = {{ display : 'flex', flexDirection : 'row', justifyContent : 'space-between', padding : '16px'}}>
+              <TouchableOpacity onPress = {()=>{this.deleteWidget(widget);}}  style = {styles.deleteButton} ><Text style = {styles.buttonText} >Delete</Text></TouchableOpacity>
+              <TouchableOpacity onPress = {()=>{ this.updateWidget(widget);  }} style = {styles.submitButton} ><Text style = {styles.buttonText} >Submit</Text></TouchableOpacity>
+            </View>
         </View>
       </View>
     )
@@ -295,6 +297,7 @@ export default class App extends Component {
         </View>
       )
   }
+
 }
 
 

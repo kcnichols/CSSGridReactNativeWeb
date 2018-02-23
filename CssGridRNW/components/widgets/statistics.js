@@ -6,10 +6,66 @@ import {
   Text,
   StyleSheet,
   Dimensions
-} from 'react-native';
+} from 'react-native-web';
 import { colorGrid } from 's2s-themes';
 import moment from 'moment';
+import jsonata from 'jsonata';
+// Fake JSON data for the sole purpose of using JSONata
+// TODO move to separate file, feed through prop
 
+const data = {
+  "FirstName": "Fred",
+  "Surname": "Smith",
+  "Age": 28,
+  "Address": {
+    "Street": "Hursley Park",
+    "City": "Winchester",
+    "Postcode": "SO21 2JN"
+  },
+  "Phone": [
+    {
+      "type": "home",
+      "number": "0203 544 1234"
+    },
+    {
+      "type": "office",
+      "number": "01962 001234"
+    },
+    {
+      "type": "office",
+      "number": "01962 001235"
+    },
+    {
+      "type": "mobile",
+      "number": "077 7700 1234"
+    }
+  ],
+  "Email": [
+    {
+      "type": "office",
+      "address": [
+        "fred.smith@my-work.com",
+        "fsmith@my-work.com"
+      ]
+    },
+    {
+      "type": "home",
+      "address": [
+        "freddy@my-social.com",
+        "frederic.smith@very-serious.com"
+      ]
+    }
+  ],
+  "Other": {
+    "Over 18 ?": true,
+    "Misc": null,
+    "Alternative.Address": {
+      "Street": "Brick Lane",
+      "City": "London",
+      "Postcode": "E1 6RF"
+    }
+  }
+};
 
 const tempColors = [
   colorGrid.gray9,
@@ -80,18 +136,19 @@ class Statistics extends Component {
 
   }
 
-  // static propTypes = {
-  //   metadata: PropTypes.object,
-  // };
-  //
-  // static defaultProps = {
-  //   statProperties : ["total", "confirmed", "reschedule", "cancelled"],
-  //   metadata : {
-  //     "displayMode" : "text",
-  //   }
-  // };
-  //
-  // static displayName = 'List Statistics';
+  // TODO why TF is are my static stuff not working?
+  static propTypes = {
+    metadata: PropTypes.object,
+  };
+
+  static defaultProps = {
+    statProperties : ["total", "confirmed", "reschedule", "cancelled"],
+    metadata : {
+      "displayMode" : "text",
+    }
+  };
+
+  static displayName = 'List Statistics';
 
   shouldComponentUpdate(nextProps,nextState) {
     // No state so not checking it
@@ -127,6 +184,23 @@ class Statistics extends Component {
 
   renderTextStats(){
     const statItems = this.props.statProperties && this.props.statProperties.map((property, index)=>{
+
+      // NOTE : This works but it is hardcoded
+      // const all = "$count(Phone)";
+      // const home = `$count(Phone[type = "home"])`;
+      // const mobile = `$count(Phone[type = "mobile"])`;
+      // const office = `$count(Phone[type = "office"])`;
+
+      // const valAll = jsonata(all).evaluate(data); // returns 4
+      // const valHome = jsonata(home).evaluate(data); // returns 4
+      // const valMobile = jsonata(mobile).evaluate(data); // returns 4
+      // const valOffice = jsonata(office).evaluate(data); // returns 4
+      //console.log('vals', valAll, valHome, valMobile, valOffice)
+
+      // TODO How can I get Jsonata expression to work with the {property} argument correctly?
+      //const fancyExp = `$count(Phone[type = ` + property + ` ])`;
+      //console.log('fancy exp',jsonata(fancyExp).evaluate(data))
+
       const x = {
         name : property,
         color : tempColors[index] !== undefined ? tempColors[index] : tempColors[0]
@@ -145,7 +219,6 @@ class Statistics extends Component {
       return x;
     });
 
-    // NOTE : StatObj.color is not being defined in metadata so
 
     return statItems.map((statObj, index)=>{
       return (
@@ -159,6 +232,7 @@ class Statistics extends Component {
   }
 
   render(){
+    //console.log('first stuff', data.Email, jsonata('$count(Email)').evaluate(data)    ); // 4
 
     return (
       <View className = "ListStatisticsContainer" style = {styles.containerStyle} >
@@ -171,17 +245,5 @@ class Statistics extends Component {
     );
   }
 }
-
-Statistics.propTypes = {
-    metadata: PropTypes.object,
-};
-Statistics.defaultProps = {
-  statProperties : ["total", "confirmed", "reschedule", "cancelled"],
-  metadata : {
-    "displayMode" : "text",
-    apptDate : Date.now(),
-
-  }
-};
 
 export default Statistics;
